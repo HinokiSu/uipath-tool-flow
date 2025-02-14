@@ -1,0 +1,329 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Http" this:Http.in_str_http_请求方式="GET" this:Http.in_int_请求超时时间="30" this:Http.in_dict_post_请求体_Body="[new Dictionary(Of String, String)]" this:Http.in_dict_请求头参数_Headers="[new Dictionary(Of String, String)]" this:Http.in_dict_get_查询参数_Params="[new Dictionary(Of String, String)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sn="clr-namespace:System.Net;assembly=System" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_str_http_请求方式" Type="InArgument(x:String)" />
+    <x:Property Name="in_int_请求超时时间" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_str_访问_URL" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_系统代理_地址" Type="InArgument(x:String)" />
+    <x:Property Name="out_str_响应数据" Type="OutArgument(x:String)" />
+    <x:Property Name="in_dict_post_请求体_Body" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_dict_请求头参数_Headers" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_dict_get_查询参数_Params" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+  </x:Members>
+  <this:Http.in_str_访问_URL>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Http.in_str_访问_URL>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>967,1332</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Http_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="30">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>System.Net.Http</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Text.Encodings.Web</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="52">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Net.Http.WebRequest</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.Text.Encodings.Web</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Http" sap:VirtualizedContainerService.HintSize="478,1267" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sn:WebProxy" Name="wp_proxy_实例" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="436,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sn:WebProxy">[wp_proxy_实例]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sn:WebProxy">[New System.net.webProxy( in_str_系统代理_地址, true)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[String.IsNullOrWhiteSpace( in_str_系统代理_地址)]" DisplayName="in_str_系统代理_地址" sap:VirtualizedContainerService.HintSize="436,53" sap2010:WorkflowViewState.IdRef="If_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,361.5" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="str_erMsg" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_erMsg]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">Error: in_str_系统代理_地址 参数未传参！！</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,107.5" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[str_erMsg]" />
+          <Throw Exception="[new Exception(str_erMsg)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <If Condition="[String.IsNullOrWhiteSpace( in_str_访问_URL)]" DisplayName="in_str_访问_URL" sap:VirtualizedContainerService.HintSize="436,53" sap2010:WorkflowViewState.IdRef="If_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,361.5" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="str_erMsg" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_erMsg]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">Error: in_str_访问_URL 参数未传参！！</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,107.5" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[str_erMsg]" />
+          <Throw Exception="[new Exception(str_erMsg)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,240" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,162" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="[Debug]" sap:VirtualizedContainerService.HintSize="200,70" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,107.5" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;==== in_dict_请求头参数_Headers Keys 输出 ===&quot;]" />
+            <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="in_dict_请求头参数_Headers" sap:VirtualizedContainerService.HintSize="334,51.5" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_dict_请求头参数_Headers.Keys]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="item_key" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,199.5" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,107.5" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[item_key]" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,107.5" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;==== in_dict_get_查询参数_Params Keys 输出 ===&quot;]" />
+            <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="in_dict_get_查询参数_Params" sap:VirtualizedContainerService.HintSize="334,51.5" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[in_dict_get_查询参数_Params.Keys]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="item_key" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,199.5" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,107.5" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[item_key]" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,107.5" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;==== in_dict_post_请求体_Body Keys 输出 ===&quot;]" />
+            <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="334,51.5" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[in_dict_post_请求体_Body.Keys]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="item_key" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,199.5" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,107.5" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[item_key]" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEach>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,107.5" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;==== 请求头&amp;请求参数 Dict Key值 打印结束 ====&quot;]" />
+          </Sequence>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="436,608" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <ui:InvokeCode ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="！！！必须导入命名空间！！！&#xA;' Imports System.Net&#xA;' Imports System.Net.Http&#xA;' Imports System.Text" Code="' 引入必要的命名空间&#xA;' Imports System.Net&#xA;' Imports System.Net.Http&#xA;' Imports System.Text&#xA;&#xA;' @param in_str_http_method 请求方式（GET 或 POST）&#xA;' @param in_str_http_url 请求地址&#xA;' @param in_dict_headers 请求头（Dictionary 类型，可选）&#xA;' @param in_dict_parameters 查询参数（Dictionary 类型，可选，用于 GET 请求）&#xA;' @param in_dict_postBody POST 请求体（字符串类型，仅在 POST 请求中使用）&#xA;' @param in_int_timeout 超时时间（单位：秒，默认 30）&#xA;' @param in_wp_WebProxy 配置的代理对象（WebProxy 类型，可选）&#xA;' @return out_str_responseResult 响应返回结果&#xA;&#xA;' 配置 HttpClientHandler 和代理&#xA;Dim handler As New System.Net.Http.HttpClientHandler()&#xA;If in_wp_WebProxy IsNot Nothing Then&#xA;    handler.Proxy = in_wp_WebProxy ' 设置代理&#xA;End If&#xA;&#xA;' 创建 HttpClient 用于发送 HTTP 请求&#xA;Dim client As New System.Net.Http.HttpClient(handler)&#xA;&#xA;' 设置超时时间（以秒为单位）&#xA;client.Timeout = TimeSpan.FromSeconds(in_int_timeout)&#xA;&#xA;' 配置 Accept 格式&#xA;client.DefaultRequestHeaders.Accept.Clear()&#xA;client.DefaultRequestHeaders.Accept.Add(New System.Net.Http.Headers.MediaTypeWithQualityHeaderValue(&quot;application/json&quot;))&#xA;&#xA;' 添加自定义 Headers（跳过 Content-Type）&#xA;If in_dict_headers IsNot Nothing Then&#xA;    For Each header In in_dict_headers&#xA;        If Not header.Key.Equals(&quot;Content-Type&quot;, StringComparison.OrdinalIgnoreCase) Then&#xA;            client.DefaultRequestHeaders.Add(header.Key, header.Value)&#xA;        End If&#xA;    Next&#xA;End If&#xA;&#xA;Dim requestUrl As String = in_str_http_url&#xA;&#xA;' 判断请求类型&#xA;If in_str_http_method.ToUpper() = &quot;GET&quot; Then&#xA;&#x9;&#xA;&#x9;&#xA;&#x9;' 拼接查询参数到 URL（如果有）&#xA;&#x9;If in_dict_parameters IsNot Nothing AndAlso in_dict_parameters.Count &gt; 0 Then&#xA;&#x9;    Dim queryString As String = String.Join(&quot;&amp;&quot;, in_dict_parameters.Select(Function(kv) $&quot;{WebUtility.UrlEncode(kv.Key)}={WebUtility.UrlEncode(kv.Value)}&quot;))&#xA;&#x9;    requestUrl = $&quot;{requestUrl}?{queryString}&quot;&#xA;&#x9;End If&#xA;&#x9;&#xA;    ' 发送 GET 请求&#xA;    Dim response = client.GetAsync(requestUrl).Result&#xA;    If response.IsSuccessStatusCode Then&#xA;        out_str_responseResult = response.Content.ReadAsStringAsync().Result&#xA;    Else&#xA;        Throw New Exception($&quot;HTTP GET failed: {response.StatusCode} - {response.ReasonPhrase}&quot;)&#xA;    End If&#xA;&#xA;ElseIf in_str_http_method.ToUpper() = &quot;POST&quot; Then&#xA;&#x9;&#xA;    ' 构建请求体&#xA;&#x9;Dim str_postData = &quot;&quot;&#xA;&#x9;If in_dict_postBody IsNot Nothing AndAlso in_dict_postBody.Count &gt; 0 Then&#xA;&#x9;    Dim queryString As String = String.Join(&quot;&amp;&quot;, in_dict_postBody.Select(Function(kv) $&quot;{WebUtility.UrlEncode(kv.Key)}={WebUtility.UrlEncode(kv.Value)}&quot;))&#xA;&#x9;&#x9;str_postData = str_postData + queryString&#xA;&#x9;End If&#xA;&#x9;&#xA;&#x9;&#xA;    ' 准备 POST 请求的内容&#xA;    Dim contentType As String = &quot;application/json&quot; ' 默认 Content-Type&#xA;    If in_dict_headers IsNot Nothing AndAlso in_dict_headers.ContainsKey(&quot;Content-Type&quot;) Then&#xA;        contentType = in_dict_headers(&quot;Content-Type&quot;) ' 从 Headers 中获取 Content-Type&#xA;    End If&#xA;&#xA;    Console.WriteLine($&quot;Content-Type: {contentType}&quot;)&#xA;&#xA;    ' 构建请求体&#xA;&#x9;Dim content As New System.Net.Http.StringContent(str_postData, Encoding.UTF8, contentType)&#xA;&#xA;&#xA;    ' 发送 POST 请求&#xA;    Dim response = client.PostAsync(requestUrl, content).Result&#xA;    If response.IsSuccessStatusCode Then&#xA;        out_str_responseResult = response.Content.ReadAsStringAsync().Result&#xA;    Else&#xA;        Throw New Exception($&quot;HTTP POST failed: {response.StatusCode} - {response.ReasonPhrase}&quot;)&#xA;    End If&#xA;&#xA;Else&#xA;    Throw New Exception(&quot;Unsupported HTTP method: &quot; &amp; in_str_http_method)&#xA;End If&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,244" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+          <ui:InvokeCode.Arguments>
+            <InArgument x:TypeArguments="x:String" x:Key=" in_str_http_method ">[in_str_http_请求方式]</InArgument>
+            <InArgument x:TypeArguments="x:Int32" x:Key="in_int_timeout">[in_int_请求超时时间]</InArgument>
+            <InArgument x:TypeArguments="sn:WebProxy" x:Key="in_wp_WebProxy">[wp_proxy_实例]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="in_str_http_url">[in_str_访问_URL]</InArgument>
+            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_dict_headers ">[in_dict_请求头参数_Headers]</InArgument>
+            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_dict_parameters ">[in_dict_get_查询参数_Params]</InArgument>
+            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_dict_postBody">[in_dict_post_请求体_Body]</InArgument>
+            <OutArgument x:TypeArguments="x:String" x:Key="out_str_responseResult ">[out_str_响应数据]</OutArgument>
+          </ui:InvokeCode.Arguments>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:InvokeCode>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,438" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="376,367" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="str_errMsg" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Warn" Message="[exception]" />
+              <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[str_errMsg]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">["[HttpRequestProxy]: 调用失败。异常详情：" + exception.Message]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Throw Exception="[new Exception( str_errMsg)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_3" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>
